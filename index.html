@@ -5,6 +5,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Code Editor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      content: ['./nuxt.config.ts'],
+      theme: {
+        extend: {
+          keyframes: {
+            animatedgradient: {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            },
+          },
+          backgroundSize: {
+            '300%': '300%',
+          },
+          animation: {
+            gradient: 'animatedgradient 6s ease infinite alternate',
+          },
+        },
+        fontFamily: {
+          sans: 'Open Sans',
+        },
+        container: {
+          center: true,
+          padding: '2rem',
+        },
+      },
+    }
+  </script>
   <style>
     .image-wrapper {
       perspective: 1000px
@@ -56,7 +86,8 @@
           <div class="image-wrapper relative w-2/3 scale-110">
             <div class="absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200">
             </div>
-          </div><img src="/editor.png" alt="Editor UI" class="rounded-2xl shadow-2xl">
+            <img src="/editor.png" alt="Editor UI" class="rounded-2xl shadow-2xl">
+          </div>
         </div>
   </div>
   </section>
