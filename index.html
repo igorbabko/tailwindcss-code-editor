@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html data-capo="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Code Editor</title>
+  <link rel="stylesheet" href="/_nuxt/node_modules/tailwindcss/tailwind.css" crossorigin>
+  <link rel="stylesheet" href="/_nuxt/.nuxt/nuxt-fonts-global.css" crossorigin>
+  <link rel="stylesheet" href="/_nuxt/components/TheHeroImage.vue?vue&type=style&index=0&scoped=97a4a0ad&lang.css"
+    crossorigin>
+  <link rel="modulepreload" as="script" crossorigin
+    href="/_nuxt/Users/igorbabko/code/nuxt-code-editor/node_modules/nuxt/dist/app/entry.js">
+  <script type="module" src="/_nuxt/@vite/client" crossorigin></script>
+  <script type="module" src="/_nuxt/Users/igorbabko/code/nuxt-code-editor/node_modules/nuxt/dist/app/entry.js"
+    crossorigin></script>
+  <style>
+    :where(.i-fa6-brands\:github) {
+      display: inline-block;
+      width: 0.97em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512' width='496' height='512'%3E%3Cpath fill='black' d='M165.9 397.4c0 2-2.3 3.6-5.2 3.6c-3.3.3-5.6-1.3-5.6-3.6c0-2 2.3-3.6 5.2-3.6c3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9c2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9c.3 2 2.9 3.3 5.9 2.6c2.9-.7 4.9-2.6 4.6-4.6c-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2c1.6 1.6 3.9 2.3 5.2 1c1.3-1 1-3.3-.7-5.2c-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9c1.6 1 3.6.7 4.3-.7c.7-1.3-.3-2.9-2.3-3.9c-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2c2.3 2.3 5.2 2.6 6.5 1c1.3-1.3.7-4.3-1.3-6.2c-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2c-1.4-2.3-4-3.3-5.6-2'/%3E%3C/svg%3E")
+    }
+
+    :where(.i-fa6-brands\:telegram) {
+      display: inline-block;
+      width: 0.97em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512' width='496' height='512'%3E%3Cpath fill='black' d='M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248s248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3c-3.476 18.584-10.322 24.816-16.948 25.425c-14.4 1.326-25.338-9.517-39.287-18.661c-21.827-14.308-34.158-23.215-55.346-37.177c-24.485-16.135-8.612-25 5.342-39.5c3.652-3.793 67.107-61.51 68.335-66.746c.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142q-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123c-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7q108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789c2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716a43.8 43.8 0 0 1 .417 9.769'/%3E%3C/svg%3E")
+    }
+
+    :where(.i-fa6-brands\:youtube) {
+      display: inline-block;
+      width: 1.13em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' width='576' height='512'%3E%3Cpath fill='black' d='M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597c-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821c11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z'/%3E%3C/svg%3E")
+    }
+
+    :where(.i-mdi\:application-brackets) {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M21 2H3a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2M11 17.5L9.5 19L5 14.5L9.5 10l1.5 1.5l-3 3zm3.5 1.5L13 17.5l3-3l-3-3l1.5-1.5l4.5 4.5zM21 7H3V4h18z'/%3E%3C/svg%3E")
+    }
+
+    :where(.i-mdi\:cog) {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z'/%3E%3C/svg%3E")
+    }
+
+    :where(.i-mdi\:grid-large) {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4c-1.08 0-2-.9-2-2V4a2 2 0 0 1 2-2m0 2v7h7V4zm0 16h7v-7H4zm16 0v-7h-7v7zm0-16h-7v7h7z'/%3E%3C/svg%3E")
+    }
+
+    :where(.i-mdi\:keyboard) {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: var(--svg);
+      mask-image: var(--svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M19 10h-2V8h2m0 5h-2v-2h2m-3-1h-2V8h2m0 5h-2v-2h2m0 6H8v-2h8m-9-5H5V8h2m0 5H5v-2h2m1 0h2v2H8m0-5h2v2H8m3 1h2v2h-2m0-5h2v2h-2m9-5H4c-1.11 0-2 .89-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2'/%3E%3C/svg%3E")
+    }
+  </style>
+</head>
+
+<body>
+  <div id="__nuxt"><!--[-->
+    <div class="nuxt-loading-indicator"
+      style="position:fixed;top:0;right:0;left:0;pointer-events:none;width:auto;height:3px;opacity:0;background:indigo;background-size:Infinity% auto;transform:scaleX(0%);transform-origin:left;transition:transform 0.1s, height 0.4s, opacity 0.4s;z-index:999999;">
+    </div>
+    <div class="flex min-h-screen flex-col">
+      <header class="py-4">
+        <div class="container flex items-center gap-x-10"><!--[--><a aria-current="page" href="/"
+            class="router-link-active router-link-exact-active flex items-center gap-x-3"><span
+              class="iconify i-mdi:application-brackets size-10 size-12 -rotate-6 bg-indigo-600" aria-hidden="true"
+              style=""></span><span class="text-2xl font-black"> Code Editor </span></a>
+          <nav class="grow">
+            <ul class="flex items-center gap-x-8"><!--[--><a href="/playlists"
+                class="rounded-md font-semibold hover:text-indigo-600 mr-auto">Library</a><a href="/login"
+                class="rounded-md font-semibold hover:text-indigo-600">Log In</a><a href="/register"
+                class="px-3 py-2 font-semibold rounded-md bg-indigo-600 text-indigo-50 hover:bg-indigo-700"><!--[-->Sign
+                Up<!--]--></a><!--]--></ul>
+          </nav><!--]-->
+        </div>
+      </header><!--[-->
+      <main>
+        <section class="flex flex-col gap-y-12 py-16 pb-48 pt-28"><!----><!--[-->
+          <div class="container flex gap-x-8"><!--[-->
+            <div class="flex flex-col justify-center">
+              <h1 class="text-5xl font-black"><!--[-->
+                <h1 class="text-5xl font-black tracking-tight"> Your <span
+                    class="animate-gradient bg-gradient-to-r from-pink-600 to-indigo-600 bg-300% bg-clip-text text-transparent">
+                    VS Code </span> Boost </h1><!--]-->
+              </h1>
+              <p class="mt-4 text-lg text-gray-600"> Unlock your coding potential with tailored settings, shortcuts, and
+                expert tutorials. </p>
+              <div class="mt-8 flex gap-x-2"><a href="/playlists"
+                  class="px-8 py-3 text-lg font-semibold rounded-lg bg-indigo-600 text-indigo-50 hover:bg-indigo-700"><!--[-->Explore<!--]--></a><a
+                  aria-current="page" href="/#features"
+                  class="router-link-active router-link-exact-active px-8 py-3 text-lg font-semibold rounded-lg bg-gray-100 text-gray-900 hover:bg-gray-200"><!--[-->
+                  Learn More <!--]--></a></div>
+            </div>
+            <div class="image-wrapper relative w-2/3 scale-110" data-v-97a4a0ad>
+              <div class="absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200"
+                data-v-97a4a0ad></div><img src="/hero3.png" alt="Hero Image" class="rounded-2xl shadow-2xl"
+                data-v-97a4a0ad>
+            </div><!--]-->
+          </div><!--]-->
+        </section>
+        <section class="flex flex-col gap-y-12 py-16 bg-gray-50" id="features">
+          <div class="container max-w-screen-sm"><!--[-->
+            <h2 class="text-4xl font-bold text-center"><!--[-->Unlock the Full Potential<!--]--></h2>
+            <p class="mt-2 text-center text-lg text-gray-600">With tailored settings, keyboard shortcuts, and powerful
+              extensions, you can work smarter and faster.</p><!--]-->
+          </div><!--[-->
+          <div class="container grid grid-cols-3 gap-8"><!--[--><!--[--><a href="/playlists/1/lessons/1" class="">
+              <div class="h-full rounded-xl border border-gray-200 bg-white p-6 hover:border-indigo-600"><!--[-->
+                <article>
+                  <header class="flex flex-col gap-y-3"><span class="iconify i-mdi:cog size-12 text-indigo-600"
+                      aria-hidden="true" style=""></span>
+                    <h3 class="text-lg font-semibold mb-1"><!--[-->Settings<!--]--></h3>
+                  </header>
+                  <p class="text-gray-600">Personalize your workspace to match your unique coding style and preferences
+                    effortlessly.</p>
+                </article><!--]-->
+              </div>
+            </a><a href="/playlists/1/lessons/1" class="">
+              <div class="h-full rounded-xl border border-gray-200 bg-white p-6 hover:border-indigo-600"><!--[-->
+                <article>
+                  <header class="flex flex-col gap-y-3"><span class="iconify i-mdi:keyboard size-12 text-indigo-600"
+                      aria-hidden="true" style=""></span>
+                    <h3 class="text-lg font-semibold mb-1"><!--[-->Keyboard Shortcuts<!--]--></h3>
+                  </header>
+                  <p class="text-gray-600">Streamline your workflow with essential shortcuts that save you time and
+                    boost efficiency.</p>
+                </article><!--]-->
+              </div>
+            </a><a href="/playlists/1/lessons/1" class="">
+              <div class="h-full rounded-xl border border-gray-200 bg-white p-6 hover:border-indigo-600"><!--[-->
+                <article>
+                  <header class="flex flex-col gap-y-3"><span class="iconify i-mdi:grid-large size-12 text-indigo-600"
+                      aria-hidden="true" style=""></span>
+                    <h3 class="text-lg font-semibold mb-1"><!--[-->Extensions<!--]--></h3>
+                  </header>
+                  <p class="text-gray-600">Streamline your workflow with essential shortcuts that save you time and
+                    boost efficiency.</p>
+                </article><!--]-->
+              </div>
+            </a><!--]--><!--]--></div><!--]-->
+        </section>
+        <section class="flex flex-col gap-y-12 py-16">
+          <div class="container max-w-screen-sm"><!--[-->
+            <h2 class="text-4xl font-bold text-center"><!--[-->Stay Updated<!--]--></h2>
+            <p class="mt-2 text-center text-lg text-gray-600">Subscribe to our newsletter for the latest updates and
+              tips.</p><!--]-->
+          </div><!--[-->
+          <div class="container"><!--[-->
+            <form class="flex justify-center gap-x-2"><input
+                class="rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-indigo-600 focus:ring-1 w-96"
+                type="email" placeholder="Your email"><button
+                class="px-6 py-2 font-semibold rounded-lg bg-indigo-600 text-indigo-50 hover:bg-indigo-700"><!--[-->Subscribe<!--]--></button>
+            </form><!--]-->
+          </div><!--]-->
+        </section>
+      </main><!--]-->
+      <footer class="mt-auto bg-indigo-900 pb-8 pt-10">
+        <div class="container"><!--[-->
+          <div class="flex">
+            <div class="mr-auto flex max-w-80 flex-col items-start"><a aria-current="page" href="/"
+                class="router-link-active router-link-exact-active flex items-center gap-x-3"><span
+                  class="iconify i-mdi:application-brackets size-12 -rotate-6 bg-white" aria-hidden="true"
+                  style=""></span><span class="text-2xl font-black text-white"> Code Editor </span></a>
+              <p class="mt-4 text-indigo-200"> Unlock your coding potential with tailored settings, shortcuts, and
+                expert tutorials. </p>
+            </div>
+            <div class="mb-8 flex justify-between gap-x-16">
+              <div class="flex grow flex-col gap-y-4">
+                <h3 class="text-lg font-semibold text-sm uppercase tracking-wider text-white"><!--[-->Popular
+                  Playlists<!--]--></h3>
+                <ul class="flex flex-col gap-y-2"><!--[-->
+                  <li><a href="/playlists/1"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->Prettier<!--]--></a>
+                  </li>
+                  <li><a href="/playlists/2"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->GitLens<!--]--></a>
+                  </li>
+                  <li><a href="/playlists/3"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->Live Share<!--]--></a>
+                  </li>
+                  <li><a href="/playlists/4"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->ESLint<!--]--></a></li>
+                  <!--]-->
+                </ul>
+              </div>
+              <div class="flex grow flex-col gap-y-4">
+                <h3 class="text-lg font-semibold text-sm uppercase tracking-wider text-white">
+                  <!--[-->Configurations<!--]--></h3>
+                <ul class="flex flex-col gap-y-2"><!--[-->
+                  <li><a href="https://github.com" rel="noopener noreferrer"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->Settings<!--]--></a>
+                  </li>
+                  <li><a href="https://github.com" rel="noopener noreferrer"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->Keybindings<!--]--></a>
+                  </li>
+                  <li><a href="https://github.com" rel="noopener noreferrer"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[-->Snippets<!--]--></a>
+                  </li><!--]-->
+                </ul>
+              </div>
+              <div class="flex grow flex-col gap-y-4">
+                <h3 class="text-lg font-semibold text-sm uppercase tracking-wider text-white"><!--[-->Social<!--]-->
+                </h3>
+                <ul class="flex flex-col gap-y-2"><!--[-->
+                  <li><a href="https://youtube.com" rel="noopener noreferrer"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[--><span
+                        class="iconify i-fa6-brands:youtube size-5" aria-hidden="true" style=""></span>
+                      YouTube<!--]--></a></li>
+                  <li><a href="https://github.com" rel="noopener noreferrer"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[--><span
+                        class="iconify i-fa6-brands:github size-5" aria-hidden="true" style=""></span>
+                      GitHub<!--]--></a></li>
+                  <li><a href="https://telegram.org" rel="noopener noreferrer"
+                      class="flex items-center gap-x-2 text-indigo-200 hover:text-white"><!--[--><span
+                        class="iconify i-fa6-brands:telegram size-5" aria-hidden="true" style=""></span>
+                      Telegram<!--]--></a></li><!--]-->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="border-t border-indigo-800 pt-8 text-center text-sm text-indigo-200"> © 2024 Code Editor. All
+            rights reserved. </div><!--]-->
+        </div>
+      </footer>
+    </div><!--]-->
+  </div>
+  <div id="teleports"></div>
+  <script type="application/json" data-nuxt-logs="nuxt-app">[[]]</script>
+  <script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true"
+    id="__NUXT_DATA__">[["ShallowReactive",1],{"data":2,"state":4,"once":6,"_errors":7,"serverRendered":9,"path":10},["ShallowReactive",3],{},["Reactive",5],{},["Set"],["ShallowReactive",8],{},true,"/"]</script>
+  <script>window.__NUXT__ = {}; window.__NUXT__.config = { public: {}, app: { baseURL: "/", buildId: "dev", buildAssetsDir: "/_nuxt/", cdnURL: "" } }</script>
+</body>
+
+</html>
