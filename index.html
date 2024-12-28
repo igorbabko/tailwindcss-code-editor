@@ -32,17 +32,21 @@
     }
   </script>
   <style type="text/tailwindcss">
-    @layer utilities {
-      .perspective-1000 {
-        perspective: 1000px;
-      }
-
+    @layer components {
       .hero-image {
+        @apply rounded-2xl shadow-2xl;
         transform: rotateX(5deg) rotate(2deg) rotateY(-10deg);
       }
 
       .hero-reflection {
+        @apply absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200;
         transform: scale(1.1) rotateX(5deg) rotate(2deg) rotateY(-10deg);
+      }
+    }
+
+    @layer utilities {
+      .perspective-1000 {
+        perspective: 1000px;
       }
     }
   </style>
@@ -82,10 +86,8 @@
                 Learn More </a></div>
           </div>
           <div class="relative w-2/3 scale-110 perspective-1000">
-            <div
-              class="absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200 hero-reflection">
-            </div>
-            <img src="/editor.png" alt="Editor UI" class="rounded-2xl shadow-2xl hero-image">
+            <div class="hero-reflection"></div>
+            <img src="/editor.png" alt="Editor UI" class="hero-image">
           </div>
         </div>
   </div>
