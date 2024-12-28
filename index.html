@@ -8,7 +8,6 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <script>
     tailwind.config = {
-      content: ['./nuxt.config.ts'],
       theme: {
         extend: {
           keyframes: {
@@ -25,9 +24,6 @@
             gradient: 'animatedgradient 6s ease infinite alternate',
           },
         },
-        fontFamily: {
-          sans: 'Open Sans',
-        },
         container: {
           center: true,
           padding: '2rem',
@@ -35,17 +31,19 @@
       },
     }
   </script>
-  <style>
-    .image-wrapper {
-      perspective: 1000px
-    }
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .perspective-1000 {
+        perspective: 1000px;
+      }
 
-    .image-wrapper div {
-      transform: scale(1.1) rotateX(5deg) rotate(2deg) rotateY(-12deg)
-    }
+      .hero-image {
+        transform: rotateX(5deg) rotate(2deg) rotateY(-10deg);
+      }
 
-    .image-wrapper img {
-      transform: rotateX(5deg) rotate(2deg) rotateY(-10deg)
+      .hero-reflection {
+        transform: scale(1.1) rotateX(5deg) rotate(2deg) rotateY(-10deg);
+      }
     }
   </style>
 </head>
@@ -83,10 +81,11 @@
                 class="router-link-active router-link-exact-active px-8 py-3 text-lg font-semibold rounded-lg bg-gray-100 text-gray-900 hover:bg-gray-200">
                 Learn More </a></div>
           </div>
-          <div class="image-wrapper relative w-2/3 scale-110">
-            <div class="absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200">
+          <div class="relative w-2/3 scale-110 perspective-1000">
+            <div
+              class="absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200 hero-reflection">
             </div>
-            <img src="/editor.png" alt="Editor UI" class="rounded-2xl shadow-2xl">
+            <img src="/editor.png" alt="Editor UI" class="rounded-2xl shadow-2xl hero-image">
           </div>
         </div>
   </div>
