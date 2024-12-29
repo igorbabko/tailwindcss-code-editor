@@ -5,11 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: {
+          center: true,
+          padding: '2rem'
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .hero-image {
+        @apply rounded-2xl shadow-2xl;
+        transform: rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+      }
+
+      .hero-reflection {
+        @apply absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200;
+        transform: scale(1.1) rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+      }
+    }
+
+    @layer utilities {
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <header class="py-4">
-    <div class="container mx-auto flex items-center gap-x-10">
+    <div class="container flex items-center gap-x-10">
       <a href="#" class="flex items-center gap-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
           class="size-12 -rotate-6 text-indigo-600">
@@ -38,7 +67,7 @@
   </header>
   <main>
     <section class="pt-28 pb-48">
-      <div class="container mx-auto flex gap-x-8">
+      <div class="container flex gap-x-8">
         <div class="flex flex-col justify-center">
           <h1 class="text-5xl font-black tracking-tight">
             Your
@@ -57,8 +86,9 @@
             </a>
           </div>
         </div>
-        <div class="w-2/3">
-          <img src="/editor.png" alt="Editor UI" class="rounded-2xl shadow-2xl">
+        <div class="relative w-2/3 scale-110 perspective-1000">
+          <div class="hero-reflection"></div>
+          <img src="/editor.png" alt="Editor UI" class="hero-image">
         </div>
       </div>
     </section>
