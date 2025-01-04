@@ -1,0 +1,438 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          sans: 'Open Sans'
+        },
+        container: {
+          center: true,
+          padding: {
+            DEFAULT: '0.75rem',
+            sm: '2rem'
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .hero-image {
+        @apply rounded-2xl shadow-2xl;
+        transform: rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+      }
+
+      .hero-reflection {
+        @apply absolute inset-0 left-20 top-10 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200 dark:from-gray-700 dark:to-gray-500;
+        transform: scale(1.1) rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+      }
+    }
+
+    @layer utilities {
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark:bg-gray-800">
+  <header
+    class="py-1.5 sm:py-4 fixed top-0 inset-x-0 sm:static z-10 bg-white border-b sm:border-0 dark:border-0 dark:bg-gray-900">
+    <div class="container flex items-center justify-between gap-x-10">
+      <a href="#" class="flex items-center gap-x-1 sm:gap-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+          class="text-indigo-600 size-8 sm:size-12 -rotate-6 dark:text-white">
+          <path fill-rule="evenodd"
+            d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm14.25 6a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm-10.28-.53a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 1 0 1.06-1.06L8.56 12l1.72-1.72a.75.75 0 1 0-1.06-1.06l-2.25 2.25Z"
+            clip-rule="evenodd" />
+        </svg>
+        <span class="text-xl font-black sm:text-2xl dark:text-white">Code Editor</span>
+      </a>
+      <nav class="hidden sm:block grow">
+        <ul class="flex items-center gap-x-8">
+          <li class="mr-auto">
+            <a href="#" class="font-semibold hover:text-indigo-600 dark:text-gray-200 dark:hover:text-indigo-200">
+              Library
+            </a>
+          </li>
+          <li>
+            <a href="#" class="font-semibold hover:text-indigo-600 dark:text-gray-200 dark:hover:text-indigo-200">
+              Log In
+            </a>
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 font-semibold bg-indigo-600 rounded-md text-indigo-50 hover:bg-indigo-700">
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="flex sm:hidden">
+        <nav id="nav"
+          class="absolute inset-x-0 hidden bg-white border-b dark:bg-gray-900 dark:border-0 peer target:block top-full">
+          <ul class="inset-x-0 top-0 flex flex-col items-center px-3 pb-3 gap-y-2">
+            <li class="flex w-full">
+              <a href="#"
+                class="w-full p-2 text-sm font-semibold text-center rounded-md sm:text-base hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                Library
+              </a>
+            </li>
+            <li class="flex w-full">
+              <a href="#"
+                class="w-full p-2 text-sm font-semibold text-center rounded-md sm:text-base hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                Log In
+              </a>
+            </li>
+            <li class="flex w-full">
+              <a href="#"
+                class="w-full px-3 py-2 text-sm font-semibold text-center bg-indigo-600 rounded-md sm:text-base text-indigo-50 hover:bg-indigo-700">
+                Sign Up
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <a href="#nav"
+          class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md -mr-1.5 peer-target:hidden peer-target:[&+a]:block">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="size-6 dark:text-white">
+            <path fill-rule="evenodd"
+              d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+        <a href="#" class="p-2 hidden target:block hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md -mr-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="size-6 dark:text-white">
+            <path fill-rule="evenodd"
+              d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="flex flex-col py-16 gap-y-12">
+      <div class="container max-w-screen-sm">
+        <h1 class="text-5xl font-black text-center">Playlists</h1>
+        <p class="mt-2 text-lg text-center text-gray-600">
+          Learn how to make VSCode work for you with our comprehensive guides and tutorials.
+        </p>
+      </div>
+      <div class="container grid grid-cols-4 gap-8">
+        <div class="sticky flex flex-col top-8 gap-y-6">
+          <input class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:border-indigo-600 focus:ring-1"
+            type="search" placeholder="Playlist title">
+          <div class="flex flex-col gap-y-2">
+            <h3 class="text-lg font-semibold">Tags</h3>
+            <ul class="flex flex-col gap-y-1">
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Productivity
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Development
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Design
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Utility
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Integration
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Testing
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Debugging
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Formatting
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Collaboration
+                </button>
+              </li>
+              <li>
+                <button class="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-100">
+                  Documentation
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 col-span-3 gap-4">
+          <a href="/playlists/1/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">Prettier</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Automatically format your code to ensure consistent style across your project.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">Utility</li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Formatting
+                  </li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/2/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">GitLens</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Supercharge Git within VS Code with commit visualization and blame annotations.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Development
+                  </li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Collaboration
+                  </li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/3/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">Live Share</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Real-time collaborative development from the comfort of your favorite editor.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Development
+                  </li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Collaboration
+                  </li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/4/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">ESLint</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Find and fix problems in your JavaScript/TypeScript code automatically.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Development
+                  </li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">Debugging</li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/5/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">Code Runner</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Run code snippets in multiple programming languages with a single click.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Development
+                  </li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">Utility</li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/6/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">REST Client</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Send HTTP requests and view responses directly in Visual Studio Code.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Development
+                  </li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">Utility</li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/7/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">Code Spell Checker</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">
+                Catch common spelling errors in your source code and documentation.
+              </p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">Utility</li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Documentation
+                  </li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+          <a href="/playlists/8/lessons/1">
+            <article
+              class="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-xl hover:border-indigo-600">
+              <header>
+                <h3 class="text-lg font-semibold">Docker</h3>
+              </header>
+              <p class="mt-2 mb-6 text-gray-600">Manage Docker containers and images directly from VS Code.</p>
+              <footer class="mt-auto">
+                <ul class="flex flex-wrap gap-x-2">
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Development
+                  </li>
+                  <li class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50">
+                    Integration
+                  </li>
+                </ul>
+              </footer>
+            </article>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pt-6 pb-6 bg-indigo-900 dark:bg-gray-900 sm:pt-10 sm:pb-8">
+    <div class="container flex flex-col gap-y-6 sm:gap-y-8">
+      <div class="flex flex-col lg:flex-row gap-y-10 lg:gap-y-8">
+        <div class="flex flex-col items-start mr-auto lg:max-w-80">
+          <a href="#" class="flex items-center gap-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+              class="text-white size-12 -rotate-6">
+              <path fill-rule="evenodd"
+                d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm14.25 6a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm-10.28-.53a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 1 0 1.06-1.06L8.56 12l1.72-1.72a.75.75 0 1 0-1.06-1.06l-2.25 2.25Z"
+                clip-rule="evenodd" />
+            </svg>
+            <span class="text-2xl font-black text-white">Code Editor</span>
+          </a>
+          <p class="mt-2 text-base text-indigo-200 dark:text-gray-400 sm:mt-4">
+            Unlock your coding potential with tailored settings, shortcuts, and expert tutorials.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-y-8 sm:gap-x-16">
+          <div class="flex flex-col gap-y-3 sm:gap-y-4">
+            <h3 class="text-sm font-semibold tracking-wider text-white uppercase">
+              Popular Playlists
+            </h3>
+            <ul class="flex flex-col gap-y-1 sm:gap-y-2">
+              <li>
+                <a href="#"
+                  class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">Prettier</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">GitLens</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">Live
+                  Share</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col gap-y-3 sm:gap-y-4">
+            <h3 class="text-sm font-semibold tracking-wider text-white uppercase">
+              Configurations
+            </h3>
+            <ul class="flex flex-col gap-y-1 sm:gap-y-2">
+              <li>
+                <a href="#"
+                  class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">Settings</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">Keyboard
+                  Shortcuts</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">Code
+                  Snippets</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col gap-y-3 sm:gap-y-4">
+            <h3 class="text-sm font-semibold tracking-wider text-white uppercase">
+              Social
+            </h3>
+            <ul class="flex flex-col gap-y-1 sm:gap-y-2">
+              <li>
+                <a href="#" class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">YouTube</a>
+              </li>
+              <li>
+                <a href="#"
+                  class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">Telegram</a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-indigo-200 dark:text-gray-400 sm:text-base hover:text-white">GitHub</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pt-6 text-sm text-center text-indigo-200 border-t border-indigo-800 dark:text-gray-400 dark:border-gray-800 sm:pt-8">
+        &copy; 2025 Code Editor. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
