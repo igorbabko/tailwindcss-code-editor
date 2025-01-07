@@ -18,7 +18,10 @@
         },
         container: {
           center: true,
-          padding: '2rem'
+          padding: {
+            DEFAULT: '0.75rem',
+            sm: '2rem'
+          }
         }
       }
     }
@@ -45,18 +48,18 @@
 </head>
 
 <body>
-  <header class="py-4">
-    <div class="container flex items-center gap-x-10">
-      <a href="#" class="flex items-center gap-x-2">
+  <header class="py-1.5 sm:py-4 fixed top-0 inset-x-0 sm:static z-10 bg-white border-b sm:border-0">
+    <div class="container flex items-center justify-between gap-x-10">
+      <a href="#" class="flex items-center gap-x-1 sm:gap-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-          class="size-12 -rotate-6 text-indigo-600">
+          class="size-8 sm:size-12 -rotate-6 text-indigo-600">
           <path fill-rule="evenodd"
             d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm14.25 6a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm-10.28-.53a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 1 0 1.06-1.06L8.56 12l1.72-1.72a.75.75 0 1 0-1.06-1.06l-2.25 2.25Z"
             clip-rule="evenodd" />
         </svg>
-        <span class="text-2xl font-black">Code Editor</span>
+        <span class="text-xl sm:text-2xl font-black">Code Editor</span>
       </a>
-      <nav class="grow">
+      <nav class="hidden sm:block grow">
         <ul class="flex items-center gap-x-8">
           <li class="mr-auto">
             <a href="#" class="font-semibold hover:text-indigo-600">Library</a>
@@ -71,9 +74,18 @@
           </li>
         </ul>
       </nav>
+      <div class="flex sm:hidden">
+        <a href="#" class="p-2 hover:bg-gray-100 rounded-md -mr-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd"
+              d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
     </div>
   </header>
-  <main>
+  <!-- <main>
     <section class="pt-28 pb-48">
       <div class="container flex gap-x-8">
         <div class="flex flex-col justify-center">
@@ -251,7 +263,7 @@
         &copy; 2025 Code Editor. All rights reserved.
       </div>
     </div>
-  </footer>
+  </footer> -->
 </body>
 
 </html>
