@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <script>
     tailwind.config = {
+      darkMode: 'selector',
       theme: {
         fontFamily: {
           sans: 'Open Sans'
@@ -28,25 +29,29 @@
   </script>
 </head>
 
-<body>
-  <header class="py-1.5 sm:py-4 fixed top-0 inset-x-0 sm:static z-10 bg-white border-b sm:border-0">
+<body class="dark:bg-gray-800">
+  <header
+    class="py-1.5 sm:py-4 fixed top-0 inset-x-0 sm:static z-10 bg-white border-b sm:border-0 dark:border-0 dark:bg-gray-900">
     <div class="container flex items-center justify-between gap-x-10">
       <a href="#" class="flex items-center gap-x-1 sm:gap-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-          class="size-8 sm:size-12 -rotate-6 text-indigo-600">
+          class="size-8 sm:size-12 -rotate-6 text-indigo-600 dark:text-white">
           <path fill-rule="evenodd"
             d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm14.25 6a.75.75 0 0 1-.22.53l-2.25 2.25a.75.75 0 1 1-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 1 1 1.06-1.06l2.25 2.25c.141.14.22.331.22.53Zm-10.28-.53a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 1 0 1.06-1.06L8.56 12l1.72-1.72a.75.75 0 1 0-1.06-1.06l-2.25 2.25Z"
             clip-rule="evenodd" />
         </svg>
-        <span class="text-xl sm:text-2xl font-black">Code Editor</span>
+        <span class="text-xl sm:text-2xl font-black dark:text-white">Code Editor</span>
       </a>
       <nav class="hidden sm:block grow">
         <ul class="flex items-center gap-x-8">
           <li class="mr-auto">
-            <a href="#" class="font-semibold hover:text-indigo-600">Library</a>
+            <a href="#"
+              class="font-semibold hover:text-indigo-600 dark:text-gray-200 dark:hover:text-indigo-200">Library</a>
           </li>
           <li>
-            <a href="#" class="font-semibold hover:text-indigo-600">Log In</a>
+            <a href="#" class="font-semibold hover:text-indigo-600 dark:text-gray-200 dark:hover:text-indigo-200">
+              Log In
+            </a>
           </li>
           <li>
             <a href="#" class="px-3 py-2 font-semibold rounded-md bg-indigo-600 text-indigo-50 hover:bg-indigo-700">
@@ -56,17 +61,18 @@
         </ul>
       </nav>
       <div class="flex sm:hidden">
-        <nav id="nav" class="absolute inset-x-0 bg-white border-b top-full hidden target:block peer">
+        <nav id="nav"
+          class="absolute inset-x-0 bg-white border-b top-full hidden target:block peer dark:border-0 dark:bg-gray-900">
           <ul class="flex flex-col items-center gap-y-2 px-3 pb-3">
             <li class="w-full">
               <a href="#"
-                class="inline-block w-full p-2 text-sm font-semibold text-center rounded-md hover:bg-gray-100">
+                class="inline-block w-full p-2 text-sm font-semibold text-center rounded-md hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
                 Library
               </a>
             </li>
             <li class="w-full">
               <a href="#"
-                class="inline-block w-full p-2 text-sm font-semibold text-center rounded-md hover:bg-gray-100">
+                class="inline-block w-full p-2 text-sm font-semibold text-center rounded-md hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
                 Log In
               </a>
             </li>
@@ -78,15 +84,18 @@
             </li>
           </ul>
         </nav>
-        <a href="#nav" class="p-2 hover:bg-gray-100 rounded-md -mr-1.5 peer-target:hidden peer-target:[&+a]:block">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <a href="#nav"
+          class="p-2 hover:bg-gray-100 rounded-md -mr-1.5 peer-target:hidden peer-target:[&+a]:block dark:hover:bg-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="size-6 dark:text-white">
             <path fill-rule="evenodd"
               d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a href="#" class="hidden p-2 hover:bg-gray-100 rounded-md -mr-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <a href="#" class="hidden p-2 hover:bg-gray-100 rounded-md -mr-1.5 dark:hover:bg-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="size-6 dark:text-white">
             <path fill-rule="evenodd"
               d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
               clip-rule="evenodd" />
@@ -98,24 +107,24 @@
   <main>
     <section class="flex flex-col pt-24 pb-12 gap-y-8 sm:py-16 md:gap-y-12">
       <div class="container max-w-screen-sm">
-        <h1 class="text-4xl font-black text-center sm:text-5xl">Prettier</h1>
-        <p class="mt-2 text-center text-gray-600 sm:mt-3 sm:text-lg">
+        <h1 class="text-4xl font-black text-center sm:text-5xl dark:text-white">Prettier</h1>
+        <p class="mt-2 text-center text-gray-600 sm:mt-3 sm:text-lg dark:text-gray-300">
           Automatically format your code to ensure consistent style across your project.
         </p>
       </div>
       <div class="container grid grid-cols-1 gap-y-8 lg:gap-x-8 lg:grid-cols-3">
         <div class="flex flex-col gap-y-4 lg:col-span-1">
           <div class="flex items-center justify-between gap-x-4">
-            <h3 class="font-semibold text-lg sm:text-lg">Lessons</h3>
+            <h3 class="font-semibold text-lg sm:text-lg dark:text-white">Lessons</h3>
             <div class="flex gap-x-2">
-              <a href="#" target="_blank" class="hover:text-indigo-600">
+              <a href="#" target="_blank" class="hover:text-indigo-600 dark:text-gray-200 dark:hover:text-indigo-300">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                   class="size-6 sm:size-8">
                   <path
                     d="M21.721 12.752a9.711 9.711 0 0 0-.945-5.003 12.754 12.754 0 0 1-4.339 2.708 18.991 18.991 0 0 1-.214 4.772 17.165 17.165 0 0 0 5.498-2.477ZM14.634 15.55a17.324 17.324 0 0 0 .332-4.647c-.952.227-1.945.347-2.966.347-1.021 0-2.014-.12-2.966-.347a17.515 17.515 0 0 0 .332 4.647 17.385 17.385 0 0 0 5.268 0ZM9.772 17.119a18.963 18.963 0 0 0 4.456 0A17.182 17.182 0 0 1 12 21.724a17.18 17.18 0 0 1-2.228-4.605ZM7.777 15.23a18.87 18.87 0 0 1-.214-4.774 12.753 12.753 0 0 1-4.34-2.708 9.711 9.711 0 0 0-.944 5.004 17.165 17.165 0 0 0 5.498 2.477ZM21.356 14.752a9.765 9.765 0 0 1-7.478 6.817 18.64 18.64 0 0 0 1.988-4.718 18.627 18.627 0 0 0 5.49-2.098ZM2.644 14.752c1.682.971 3.53 1.688 5.49 2.099a18.64 18.64 0 0 0 1.988 4.718 9.765 9.765 0 0 1-7.478-6.816ZM13.878 2.43a9.755 9.755 0 0 1 6.116 3.986 11.267 11.267 0 0 1-3.746 2.504 18.63 18.63 0 0 0-2.37-6.49ZM12 2.276a17.152 17.152 0 0 1 2.805 7.121c-.897.23-1.837.353-2.805.353-.968 0-1.908-.122-2.805-.353A17.151 17.151 0 0 1 12 2.276ZM10.122 2.43a18.629 18.629 0 0 0-2.37 6.49 11.266 11.266 0 0 1-3.746-2.504 9.754 9.754 0 0 1 6.116-3.985Z" />
                 </svg>
               </a>
-              <a href="#" target="_blank" class="hover:text-indigo-600">
+              <a href="#" target="_blank" class="hover:text-indigo-600 dark:text-gray-200 dark:hover:text-indigo-300">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                   class="size-6 sm:size-8">
                   <path fill-rule="evenodd"
@@ -128,21 +137,21 @@
           <ul class="flex flex-col gap-y-1">
             <li>
               <a href="#"
-                class="flex items-center justify-between w-full p-3 text-indigo-700 rounded-lg gap-x-4 bg-indigo-50">
+                class="flex items-center justify-between w-full p-3 text-indigo-700 rounded-lg gap-x-4 bg-indigo-50 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-700">
                 <span class="text-sm font-medium truncate sm:text-base">1. Getting Started with Prettier</span>
                 <span class="text-sm text-gray-500 sm:text-base">5:30</span>
               </a>
             </li>
             <li>
               <a href="#"
-                class="flex items-center justify-between w-full p-3 text-gray-600 rounded-lg gap-x-4 hover:bg-gray-100">
+                class="flex items-center justify-between w-full p-3 text-gray-600 rounded-lg gap-x-4 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
                 <span class="text-sm font-medium truncate sm:text-base">2. Advanced GitLens Features</span>
                 <span class="text-sm text-gray-500 sm:text-base">8:45</span>
               </a>
             </li>
             <li>
               <a href="#"
-                class="flex items-center justify-between w-full p-3 text-gray-600 rounded-lg gap-x-4 hover:bg-gray-100">
+                class="flex items-center justify-between w-full p-3 text-gray-600 rounded-lg gap-x-4 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
                 <span class="text-sm font-medium truncate sm:text-base">3. Debugging with ESLint</span>
                 <span class="text-sm text-gray-500 sm:text-base">6:15</span>
               </a>
@@ -156,7 +165,8 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
           </iframe>
-          <article class="prose prose-h3:m-0 prose-p:mt-2 max-w-none">
+          <article
+            class="prose prose-h3:m-0 prose-p:mt-2 max-w-none prose-p:dark:text-gray-300 prose-h3:dark:text-gray-200">
             <header>
               <h3>Getting Started with Prettier</h3>
             </header>
@@ -172,7 +182,7 @@
       </div>
     </section>
   </main>
-  <footer class="py-6 bg-indigo-900 sm:pt-10 sm:pb-8">
+  <footer class="py-6 bg-indigo-900 sm:pt-10 sm:pb-8 dark:bg-gray-900">
     <div class="container flex flex-col gap-y-6 sm:gap-y-8">
       <div class="flex flex-col gap-10 lg:gap-8 lg:flex-row">
         <div class="flex flex-col items-start mr-auto lg:max-w-80">
@@ -185,7 +195,7 @@
             </svg>
             <span class="text-2xl font-black text-white">Code Editor</span>
           </a>
-          <p class="mt-2 text-sm text-indigo-200 sm:mt-4 sm:text-base">
+          <p class="mt-2 text-sm text-indigo-200 sm:mt-4 sm:text-base dark:text-gray-400">
             Unlock your coding potential with tailored settings, shortcuts, and expert tutorials.
           </p>
         </div>
@@ -196,13 +206,16 @@
             </h3>
             <ul class="flex flex-col gap-y-1 sm:gap-y-2">
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">Prettier</a>
+                <a href="#"
+                  class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">Prettier</a>
               </li>
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">GitLens</a>
+                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">GitLens</a>
               </li>
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">Live Share</a>
+                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">
+                  Live Share
+                </a>
               </li>
             </ul>
           </div>
@@ -212,13 +225,18 @@
             </h3>
             <ul class="flex flex-col gap-y-1 sm:gap-y-2">
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">Settings</a>
+                <a href="#"
+                  class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">Settings</a>
               </li>
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">Keyboard Shortcuts</a>
+                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">
+                  Keyboard Shortcuts
+                </a>
               </li>
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">Code Snippets</a>
+                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">
+                  Code Snippets
+                </a>
               </li>
             </ul>
           </div>
@@ -228,19 +246,21 @@
             </h3>
             <ul class="flex flex-col gap-y-1 sm:gap-y-2">
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">YouTube</a>
+                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">YouTube</a>
               </li>
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">Telegram</a>
+                <a href="#"
+                  class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">Telegram</a>
               </li>
               <li>
-                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base">GitHub</a>
+                <a href="#" class="text-sm text-indigo-200 hover:text-white sm:text-base dark:text-gray-400">GitHub</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="pt-6 border-t border-indigo-800 text-center text-sm text-indigo-200 sm:pt-8">
+      <div
+        class="pt-6 border-t border-indigo-800 text-center text-sm text-indigo-200 sm:pt-8 dark:text-gray-400 dark:border-gray-800">
         &copy; 2025 Code Editor. All rights reserved.
       </div>
     </div>
