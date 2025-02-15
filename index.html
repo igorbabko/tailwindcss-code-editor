@@ -5,29 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Editor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'selector',
-      theme: {
-        fontFamily: {
-          sans: 'Open Sans'
-        },
-        container: {
-          center: true,
-          padding: {
-            DEFAULT: '0.75rem',
-            sm: '2rem'
-          }
-        }
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   <style type="text/tailwindcss">
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+    @import 'tailwindcss';
+
+    @custom-variant dark (&:where(.dark, .dark *));
+
+    @theme {
+      --font-sans: 'Open Sans';
+    }
+
     @layer components {
       .hero-image {
         @apply rounded-2xl shadow-2xl;
@@ -40,9 +28,12 @@
       }
     }
 
-    @layer utilities {
-      .perspective-1000 {
-        perspective: 1000px;
+    @utility container {
+      padding-inline: 0.75rem;
+      margin-inline: auto;
+
+      @variant sm {
+        padding-inline: 2rem;
       }
     }
   </style>
@@ -50,7 +41,7 @@
 
 <body class="dark:bg-gray-800">
   <header
-    class="py-1.5 sm:py-4 fixed top-0 inset-x-0 sm:static z-10 bg-white border-b sm:border-0 dark:border-0 dark:bg-gray-900">
+    class="py-1.5 sm:py-4 fixed top-0 inset-x-0 sm:static z-10 bg-white border-b border-gray-200 sm:border-0 dark:border-0 dark:bg-gray-900">
     <div class="container flex items-center justify-between gap-x-10">
       <a href="#" class="flex items-center gap-x-1 sm:gap-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -81,7 +72,7 @@
       </nav>
       <div class="flex sm:hidden">
         <nav id="nav"
-          class="absolute inset-x-0 bg-white border-b top-full hidden target:block peer dark:border-0 dark:bg-gray-900">
+          class="absolute inset-x-0 bg-white border-b border-gray-200 top-full hidden target:block peer dark:border-0 dark:bg-gray-900">
           <ul class="flex flex-col items-center gap-y-2 px-3 pb-3">
             <li class="w-full">
               <a href="#"
@@ -147,7 +138,7 @@
             </a>
           </div>
         </div>
-        <div class="relative scale-90 lg:scale-110 lg:w-2/3 lg:perspective-1000">
+        <div class="relative scale-90 lg:scale-110 lg:w-2/3 lg:perspective-distant">
           <div class="hero-reflection"></div>
           <img src="/editor.png" alt="Editor UI" class="hero-image">
         </div>
@@ -227,9 +218,9 @@
       <div class="container">
         <form class="flex justify-center gap-x-2">
           <input type="email" placeholder="Your Email"
-            class="rounded-md border border-gray-300 px-4 py-2 text-sm shadow-sm focus:border-indigo-600 focus:ring-1 w-96 sm:rounded-lg sm:text-base dark:focus:ring-indigo-400 dark:bg-gray-700 dark:border-0 dark:text-white dark:placeholder:text-gray-400">
+            class="rounded-md border border-gray-300 px-4 py-2 text-sm shadow-xs outline-hidden ring-transparent focus:border-indigo-600 focus:ring-1 w-96 sm:rounded-lg sm:text-base dark:focus:ring-indigo-400 dark:bg-gray-700 dark:border-0 dark:text-white dark:placeholder:text-gray-400">
           <button
-            class="px-4 py-1 font-semibold rounded-md bg-indigo-600 text-indigo-50 hover:bg-indigo-700 sm:px-6 sm:py-2 sm:rounded-lg">
+            class="px-4 py-1 font-semibold rounded-md bg-indigo-600 text-indigo-50 cursor-pointer hover:bg-indigo-700 sm:px-6 sm:py-2 sm:rounded-lg">
             <span class="hidden sm:inline">Subscribe</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 sm:hidden">
               <path
